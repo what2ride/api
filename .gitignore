@@ -1,0 +1,18 @@
+# IntelliJ stuff
+*.iml
+.idea/
+
+# Node stuff
+node_modules/
+
+# Env files
+.env
+
+# Apple stuff
+.DS_STORE
+
+# Build stuff
+dist/
+out/
+target/
+logs/
