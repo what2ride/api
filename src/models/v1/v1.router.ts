@@ -4,11 +4,18 @@
 import express, {Request, Response} from 'express';
 import {Guid} from 'guid-typescript';
 import logger from '../../middleware/logger';
+import {carRouter} from './car/car.router';
+import {planeRouter} from './plane/plane.router';
+import {trainRouter} from './train/train.router';
 
 /**
  * Router Definition
  */
 export const v1Router = express.Router();
+
+v1Router.use('/car', carRouter);
+v1Router.use('/plane', planeRouter);
+v1Router.use('/train', trainRouter);
 
 v1Router.get('/', async (req: Request, res: Response) => {
 	try {
