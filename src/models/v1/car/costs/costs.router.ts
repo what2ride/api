@@ -6,6 +6,7 @@ import {Guid} from 'guid-typescript';
 import logger from '../../../../middleware/logger';
 
 import * as costService from './costs.service';
+import {parseInput} from '../../../../middleware/request-parser';
 
 /**
  * Router Definition
@@ -29,12 +30,16 @@ costsRouter.get('/', async (req: Request, res: Response) => {
 costsRouter.post('/', async (req: Request, res: Response) => {
 	try {
 		// Read input params
-		const origin_address = req.body.origin_address;
-		const destination_address = req.body.destination_address;
+		const params: any = parseInput(req);
+
+		const origin_address = params.origin_address;
+		const destination_address = params.destination_address;
 		// Call service method
 		let success = await costService.templateFunction();
 
-		res.status(200).send({costs: 200, currency: '€'});
+		let body = {costs: 200, currency: '€', parameters: params};
+
+		res.status(200).send(body);
 	} catch (e: any) {
 		let errorGuid = Guid.create().toString();
 		logger.error('Error handling a request: ' + e.message, {reference: errorGuid});

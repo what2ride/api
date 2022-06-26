@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+
 const mariadb = require('mariadb');
 dotenv.config();
 
@@ -10,7 +11,8 @@ export namespace what2rideDB {
 		database: 'what2ride_db',
 		connectionLimit: 5
 	});
-	export function getConnection() {
-		return pool;
+
+	export const getConnection = async() => {
+		return pool.getConnection();
 	}
 }
