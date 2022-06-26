@@ -6,7 +6,7 @@ dotenv.config();
 export const templateFunction = async (): Promise<boolean> => {
 	let conn = await what2rideDB.getConnection();
 	try {
-		conn.query('SELECT * FROM car_manufacturers');
+		//conn.query('SELECT * FROM car_manufacturers');
 	} catch (err) {
 		// Error handling
 		throw err;
